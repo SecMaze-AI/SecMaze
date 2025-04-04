@@ -1,7 +1,6 @@
 {
   "name": "secmaze-frontend",
-  "version": "1.0.2",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,7 +1,7 @@
 {
   "name": "secmaze",
   "version": "1.0.2",
-  "description": "Blockchain-powered defense maze protecting digital assets from malicious bots",
+  "description": "Blockchain-powered defense maze system protecting digital assets from advanced attacks",
   "main": "src/backend/server.js",
   "scripts": {
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
@@ -18,7 +18,10 @@
     "blockchain",
     "web3",
     "bot-protection",
-    "defense"
+    "defense",
+    "challenge",
+    "maze",
+    "machine-learning"
   ],
   "author": "SecMaze-AI",
   "license": "MIT",

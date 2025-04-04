@@ -18,14 +18,18 @@ class BotDetector {
         'interactionTiming',
         'navigationFlow',
         'browserFingerprint',
-        'mazeInteraction'
+        'mazeInteraction',
+        'patternRecognition',  // New feature
+        'behavioralAnalysis'   // New feature
       ],
       featureWeights: {
-        movementPatterns: 0.25,
-        interactionTiming: 0.2,
+        movementPatterns: 0.20,
+        interactionTiming: 0.15,
         navigationFlow: 0.15,
-        browserFingerprint: 0.2,
-        mazeInteraction: 0.2
+        browserFingerprint: 0.15,
+        mazeInteraction: 0.15,
+        patternRecognition: 0.10,  // New feature weight
+        behavioralAnalysis: 0.10    // New feature weight
       },
       ...options
     };
@@ -33,6 +37,7 @@ class BotDetector {
     this.model = null;
     this.signatures = [];
     this.initialized = false;
+    this.lastUpdated = Date.now();
   }
   
   /**
@@ -70,32 +75,43 @@ class BotDetector {
     // In a real implementation, this would return an actual ML model
     // For this prototype, we'll use a simple rule-based approach
     return {
-      version: '0.1.0',
       type: 'rule-based',
       rules: [
         {
           feature: 'movementPatterns',
           condition: 'linearMovement',
           threshold: 0.8,
-          weight: 0.3
+          weight: 0.25
         },
         {
           feature: 'interactionTiming',
           condition: 'consistentTiming',
           threshold: 0.9,
-          weight: 0.25
+          weight: 0.20
         },
         {
           feature: 'browserFingerprint',
           condition: 'knownBotFingerprint',
           threshold: 0.7,
-          weight: 0.2
+          weight: 0.15
         },
         {
           feature: 'mazeInteraction',
           condition: 'unnaturalSolving',
           threshold: 0.85,
-          weight: 0.25
+          weight: 0.20
+        },
+        {
+          feature: 'patternRecognition',
+          condition: 'repeatedPatterns',
+          threshold: 0.75,
+          weight: 0.10
+        },
+        {
+          feature: 'behavioralAnalysis',
+          condition: 'anomalousDecisionMaking',
+          threshold: 0.80,
+          weight: 0.10
         }
       ]
     };
@@ -209,6 +225,10 @@ class BotDetector {
     
     // Extract maze interaction
     features.mazeInteraction = this._analyzeMazeInteraction(session.mazeInteraction || {});
+    
+    // New features
+    features.patternRecognition = this._analyzePatterns(session);
+    features.behavioralAnalysis = this._analyzeBehavior(session);
     
     return features;
   }
@@ -486,6 +506,164 @@ class BotDetector {
       intervalVariance: normalizedVariance,
       noCollisions: !mazeData.wallCollisions || mazeData.wallCollisions === 0
     };
+  }
+  
+  /**
+   * Analyze patterns in user interaction
+   * @param {Object} session - Session data
+   * @returns {Object} Pattern analysis
+   * @private
+   */
+  _analyzePatterns(session) {
+    const movements = session.movements || [];
+    const interactions = session.interactions || [];
+    
+    if (!movements.length || !interactions.length) {
+      return { score: 0.85 }; // Suspicious if no data
+    }
+    
+    // Extract patterns from movements
+    const movementPatterns = [];
+    for (let i = 1; i < movements.length; i++) {
+      const prev = movements[i - 1];
+      const curr = movements[i];
+      
+      const dx = curr.x - prev.x;
+      const dy = curr.y - prev.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx);
+      
+      movementPatterns.push({
+        distance,
+        angle,
+        time: curr.timestamp - prev.timestamp
+      });
+    }
+    
+    // Check for repeated patterns
+    const patternCounts = {};
+    for (let i = 0; i < movementPatterns.length - 3; i++) {
+      const pattern = movementPatterns.slice(i, i + 3)
+        .map(p => `${Math.round(p.angle * 10)}:${Math.round(p.distance / 10)}`)
+        .join('|');
+      
+      patternCounts[pattern] = (patternCounts[pattern] || 0) + 1;
+    }
+    
+    // Calculate repetition score
+    const maxCount = Math.max(...Object.values(patternCounts), 0);
+    const repetitionScore = movementPatterns.length > 10 
+      ? maxCount / (movementPatterns.length / 3) 
+      : 0.5;
+    
+    return {
+      score: repetitionScore,
+      details: {
+        uniquePatterns: Object.keys(patternCounts).length,
+        mostFrequentPattern: maxCount,
+        totalPatterns: movementPatterns.length
+      }
+    };
+  }
+  
+  /**
+   * Analyze behavioral aspects of user interaction
+   * @param {Object} session - Session data
+   * @returns {Object} Behavioral analysis
+   * @private
+   */
+  _analyzeBehavior(session) {
+    const mazeInteractions = session.mazeInteraction || {};
+    const movements = session.movements || [];
+    
+    // No data is suspicious
+    if (!movements.length) {
+      return { score: 0.9 };
+    }
+    
+    // Check decision points - humans typically pause at junctions
+    let decisionPoints = 0;
+    let naturalPauses = 0;
+    
+    if (mazeInteractions.path && mazeInteractions.path.length > 2) {
+      const path = mazeInteractions.path;
+      
+      for (let i = 1; i < path.length - 1; i++) {
+        const prev = path[i - 1];
+        const curr = path[i];
+        const next = path[i + 1];
+        
+        // Identify a direction change (decision point)
+        const prevDir = this._getDirection(prev, curr);
+        const nextDir = this._getDirection(curr, next);
+        
+        if (prevDir !== nextDir) {
+          decisionPoints++;
+          
+          // Check if there was a pause at this decision point
+          const timeDiff = next.timestamp - curr.timestamp;
+          if (timeDiff > 500) { // Pause threshold in ms
+            naturalPauses++;
+          }
+        }
+      }
+    }
+    
+    // Humans tend to pause at decision points
+    const pauseRatio = decisionPoints > 0 ? naturalPauses / decisionPoints : 0;
+    let behaviorScore = 1 - pauseRatio; // Higher score = more bot-like
+    
+    // Adjust score based on additional behavioral factors
+    if (session.userInteractions) {
+      // Humans often hover before clicking
+      const hasHoverBeforeClick = session.userInteractions.some(
+        i => i.type === 'hover' && i.followed === 'click'
+      );
+      
+      if (hasHoverBeforeClick) {
+        behaviorScore *= 0.8; // Reduce bot score for natural behavior
+      }
+      
+      // Bots often have very consistent movement speeds
+      const timings = movements
+        .filter((_, i) => i > 0)
+        .map((m, i) => m.timestamp - movements[i].timestamp);
+      
+      const avgTiming = timings.reduce((sum, t) => sum + t, 0) / timings.length;
+      const variance = timings.reduce((sum, t) => sum + Math.pow(t - avgTiming, 2), 0) / timings.length;
+      const standardDev = Math.sqrt(variance);
+      
+      // Very low standard deviation suggests bot-like behavior
+      const variabilityScore = Math.min(standardDev / avgTiming, 1);
+      behaviorScore = (behaviorScore + (1 - variabilityScore)) / 2;
+    }
+    
+    return {
+      score: behaviorScore,
+      details: {
+        decisionPoints,
+        naturalPauses,
+        pauseRatio
+      }
+    };
+  }
+  
+  /**
+   * Get direction between two points
+   * @param {Object} p1 - First point
+   * @param {Object} p2 - Second point
+   * @returns {string} Direction
+   * @private
+   */
+  _getDirection(p1, p2) {
+    const dx = p2.x - p1.x;
+    const dy = p2.y - p1.y;
+    
+    if (Math.abs(dx) > Math.abs(dy)) {
+      return dx > 0 ? 'right' : 'left';
+    } else {
+      return dy > 0 ? 'down' : 'up';
+    }
   }
   
   /**

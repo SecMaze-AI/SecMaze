@@ -1,5 +1,5 @@
 Host github.com-secmaze
 HostName github.com
 User git
-IdentityFile C:/Users/郭/.ssh/secmaze_key
+IdentityFile ~/.ssh/secmaze_key
 IdentitiesOnly yes 

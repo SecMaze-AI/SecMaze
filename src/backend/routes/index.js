@@ -8,30 +8,29 @@ const router = express.Router();
 // Import route modules
 const authRoutes = require('./auth');
 const mazeRoutes = require('./maze');
-const userRoutes = require('./user');
 const statsRoutes = require('./stats');
+const userRoutes = require('./user');
 const blockchainRoutes = require('./blockchain');
 
-// Register routes
+// Mount routes
 router.use('/auth', authRoutes);
 router.use('/maze', mazeRoutes);
-router.use('/user', userRoutes);
 router.use('/stats', statsRoutes);
+router.use('/user', userRoutes);
 router.use('/blockchain', blockchainRoutes);
 
-// Root API endpoint
+// API health check and status route
 router.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to SecMaze API',
-    version: '0.1.0',
-    endpoints: [
-      '/auth',
-      '/maze',
-      '/user',
-      '/stats',
-      '/blockchain'
-    ]
+    status: 'online',
+    message: 'SecMaze API is running',
+    environment: process.env.NODE_ENV,
+    documentation: '/api/docs',
+    endpoints: ['/api/auth', '/api/maze', '/api/stats', '/api/user', '/api/blockchain', '/api/analytics'],
   });
 });
+
+// Add Analytics API route
+router.use('/analytics', require('./analytics'));
 
 module.exports = router; 
