@@ -328,6 +328,12 @@ The SecMaze project is available under the MIT License. This permissive license 
 
 The full license text can be found in the [LICENSE](./LICENSE) file in the project repository.
 
+## 🔗 Links
+
+- **Website**: [secmaze.xyz](https://www.secmaze.xyz/)
+- **Twitter**: [@secmaze_](https://x.com/secmaze_)
+- **GitHub**: [SecMaze-AI/SecMaze](https://github.com/SecMaze-AI/SecMaze)
+
 ---
 
 <p align="center">Made with ❤️ by the SecMaze Team</p> 
