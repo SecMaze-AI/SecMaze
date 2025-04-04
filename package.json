@@ -1,6 +1,6 @@
 {
   "name": "secmaze",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "Blockchain-powered defense maze protecting digital assets from malicious bots",
   "main": "src/backend/server.js",
   "scripts": {
