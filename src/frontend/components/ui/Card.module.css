@@ -1,0 +1,46 @@
+.card {
+  padding: 1.5rem;
+  border-radius: 10px;
+  background-color: #2d3748;
+  color: #e2e8f0;
+}
+
+/* Variant styles */
+.default {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.elevated {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.bordered {
+  border: 1px solid #4a5568;
+}
+
+.interactive {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode variations for potential future use */
+.dark.card {
+  background-color: #1a202c;
+  color: #e2e8f0;
+}
+
+.dark.bordered {
+  border-color: #2d3748;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .card {
+    padding: 1rem;
+  }
+} 

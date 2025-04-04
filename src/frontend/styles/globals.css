@@ -1,0 +1,111 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Default dark theme values */
+  --primary-color: #4fd1c5;
+  --secondary-color: #805ad5;
+  --danger-color: #e53e3e;
+  --success-color: #48bb78;
+  --text-color: #ffffff;
+  --text-secondary: #a0aec0;
+  --background-primary: #0a0c1f;
+  --background-secondary: #1a202c;
+  --background-card: #2d3748;
+  --border-color: #4a5568;
+  --input-background: #2d3748;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Light theme values */
+.light {
+  --primary-color: #38b2ac;
+  --secondary-color: #6b46c1;
+  --danger-color: #c53030;
+  --success-color: #38a169;
+  --text-color: #1a202c;
+  --text-secondary: #4a5568;
+  --background-primary: #f7fafc;
+  --background-secondary: #edf2f7;
+  --background-card: #ffffff;
+  --border-color: #e2e8f0;
+  --input-background: #f7fafc;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark theme (explicitly specified for clarity) */
+.dark {
+  --primary-color: #4fd1c5;
+  --secondary-color: #805ad5;
+  --danger-color: #e53e3e;
+  --success-color: #48bb78;
+  --text-color: #ffffff;
+  --text-secondary: #a0aec0;
+  --background-primary: #0a0c1f;
+  --background-secondary: #1a202c;
+  --background-card: #2d3748;
+  --border-color: #4a5568;
+  --input-background: #2d3748;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Apply theme colors */
+body {
+  background-color: var(--background-primary);
+  color: var(--text-color);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--input-background);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+} 

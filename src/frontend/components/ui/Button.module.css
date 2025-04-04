@@ -1,0 +1,119 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  text-decoration: none;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Size variants */
+.small {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.medium {
+  padding: 0.625rem 1.25rem;
+  font-size: 1rem;
+}
+
+.large {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+}
+
+/* Color variants */
+.primary {
+  background-color: #4fd1c5;
+  color: #1a202c;
+  box-shadow: 0 2px 4px rgba(79, 209, 197, 0.3);
+}
+
+.primary:hover:not(:disabled) {
+  background-color: #38b2ac;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(79, 209, 197, 0.4);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(79, 209, 197, 0.4);
+}
+
+.secondary {
+  background-color: #805ad5;
+  color: white;
+  box-shadow: 0 2px 4px rgba(128, 90, 213, 0.3);
+}
+
+.secondary:hover:not(:disabled) {
+  background-color: #6b46c1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(128, 90, 213, 0.4);
+}
+
+.secondary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(128, 90, 213, 0.4);
+}
+
+.tertiary {
+  background-color: #2d3748;
+  color: #cbd5e0;
+  border: 1px solid #4a5568;
+}
+
+.tertiary:hover:not(:disabled) {
+  background-color: #4a5568;
+  color: white;
+}
+
+.danger {
+  background-color: #e53e3e;
+  color: white;
+  box-shadow: 0 2px 4px rgba(229, 62, 62, 0.3);
+}
+
+.danger:hover:not(:disabled) {
+  background-color: #c53030;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(229, 62, 62, 0.4);
+}
+
+.success {
+  background-color: #48bb78;
+  color: white;
+  box-shadow: 0 2px 4px rgba(72, 187, 120, 0.3);
+}
+
+.success:hover:not(:disabled) {
+  background-color: #38a169;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(72, 187, 120, 0.4);
+}
+
+.ghost {
+  background-color: transparent;
+  color: #a0aec0;
+}
+
+.ghost:hover:not(:disabled) {
+  background-color: rgba(160, 174, 192, 0.1);
+  color: #e2e8f0;
+}
+
+.fullWidth {
+  width: 100%;
+} 
