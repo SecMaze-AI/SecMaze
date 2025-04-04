@@ -4,6 +4,14 @@
   <img src="./assets/logo.png" alt="SecMaze Logo" width="250">
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT">
+  <img src="https://img.shields.io/badge/version-stable-green.svg" alt="Version: Stable">
+  <img src="https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg" alt="Node: >=18.0.0">
+  <img src="https://img.shields.io/badge/platform-blockchain-lightgrey.svg" alt="Platform: Blockchain">
+  <img src="https://img.shields.io/badge/type-security-red.svg" alt="Type: Security">
+</p>
+
 <h3 align="center">Advanced Security Maze Challenge Platform</h3>
 <p align="center">Blockchain-powered security maze challenges for identifying and preventing automated attacks</p>
 
@@ -61,10 +69,6 @@ SecMaze/
 ├── scripts/                 # Build & deployment scripts
 └── tests/                   # Test suite
 ```
-
-<p align="center">
-  <img src="https://mermaid.ink/img/pako:eNqNkk1rAjEQhv_KMKeFXlo9iB9QKEVYerK9lGVIZtVgPkgyIrL-d7PZ1V3xoyeFvDPvPEkmk1OllWOS00ZJl9E6lyWshCrRbIlrVXbW0nOQR1iC4U7Ckq29OYYpD5CuZrlJaGtcC-6RJIzY1lF4RFvDNrJsyQsMdXBqrVbgA23QCqvRVJCrDMYY-DlCfV7Z2nqFexTcVb3zcSG8KH8dSBYvTf9zG9vZWQ-8mHB1saSPXO6I5iGIuauxNNbKTZB_h48YyYPrkcmOTPJEjkmOxbVUnTqQPB0b7Vd-L8qqEBu1F9vMZCLgj5GzCaexxuE1wnDq-bxvTc4aKRxWeFnYrJVVmOcWK1klL-SBr2jZSJvDXqpgYXLRtpXKS5a_PX3pxHcwn3yDPJLJ14-QP0ieEb4?type=png" alt="SecMaze Architecture Diagram" width="600">
-</p>
 
 ## 🛠️ Tech Stack
 
@@ -135,10 +139,6 @@ The SecMaze platform operates with the following data flow:
    - Successful completions earn token rewards
    - Threat data is stored on blockchain for community sharing
    - Smart contracts manage token distribution and data verification
-
-<p align="center">
-  <img src="https://mermaid.ink/img/pako:eNqVk1FLwzAQx79KyJMFX-w82AdBGILgk_gyxnKt1y22SUnSMcb23d02ddts4h5Kc8n9_vf_5JK2TZQxBFFkK5HRpqCrG8G4JA-ElzyrjCG_Xh6cM0oVrCnN-COlZVrwQiJ0ZcJIZmQWG7ElknA-oqgVqpLInZcsmZYFmYo8l0RoIlX7-e6GyJzJZ0HpO0SKN1oSk2vJMlFmhBmz_kQ3Uq1LyN80K1AJSzgdZhWXRUbEHpXCgFrb4DawLFhKK0bIjm-ZhLc-R-NBwLYeC7zB8MrGUOLJBFVJjTTpUMcm0-4KVkUNrquZZsK-m_AWOKHUftBvnwT2KdkY5yE4KpUfZPFqjL3E9mEv5SZOdYJ_pCfK97SdtM8J4Qa323tg6DlL-klfnN2P8CrvWBm21_2dfx7jwNtdEhw80WZw-HTpwOEnCXrfANdWjh2D57GpZ2tnxzZTh2fAVDp7p0-fHv46hZ8kHFrtDpZrhjZfhWm3Fbd-pntFIkbHnVd6nqrAapRaEK5mL2gaYbYSqiAlF1oFES85W9Rcpjx6-gXC2eaJ?type=png" alt="SecMaze Data Flow Diagram" width="700">
-</p>
 
 ## 🧩 Key Components
 
@@ -324,10 +324,10 @@ Please ensure your code follows the project's coding standards and includes appr
 
 ## 📜 License
 
-[MIT](LICENSE) © SecMaze Team
+The SecMaze project is available under the MIT License. This permissive license allows for free use, modification, distribution, and private use of the software while providing limited liability and warranty protection for the authors.
+
+The full license text can be found in the [LICENSE](./LICENSE) file in the project repository.
 
 ---
 
-<p align="center">
-  Made with ❤️ by the SecMaze Team
-</p> 
+<p align="center">Made with ❤️ by the SecMaze Team</p> 
