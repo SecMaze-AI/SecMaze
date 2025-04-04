@@ -6,7 +6,7 @@
 
 <h3 align="center">Advanced Security Maze Challenge Platform</h3>
 <p align="center">Blockchain-powered security maze challenges for identifying automated attacks</p>
-<p align="center"><strong>Version: 1.01</strong></p>
+<p align="center"><strong>Version: 1.02</strong></p>
 
 <p align="center">
   <a href="#-features">Features</a> •
