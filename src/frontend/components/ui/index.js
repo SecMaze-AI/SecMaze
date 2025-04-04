@@ -1,13 +1,6 @@
-import Button from './Button';
-import Card from './Card';
-import Input from './Input';
-import SocialIcon from './SocialIcon';
-import ThemeToggle from './ThemeToggle';
-
-export {
-  Button,
-  Card,
-  Input,
-  SocialIcon,
-  ThemeToggle
-}; 
+export { default as Button } from './Button';
+export { default as Card } from './Card';
+export { default as Input } from './Input';
+export { default as ThemeToggle } from './ThemeToggle';
+export { default as SocialIcon } from './SocialIcon';
+export { default as MazeStats } from '../MazeStats'; 

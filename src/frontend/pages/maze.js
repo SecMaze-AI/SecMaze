@@ -6,7 +6,8 @@ import MazeGenerator from '../components/MazeGenerator';
 import styles from '../styles/MazePage.module.css';
 import { useAuth } from '../contexts/AuthContext';
 import { generateShareLinks, copyToClipboard, generateMazeShareUrl } from '../utils/shareHelpers';
-import { Button, SocialIcon } from '../components/ui';
+import { Button, SocialIcon, MazeStats } from '../components/ui';
+import { Maze } from '../components';
 
 /**
  * Maze page component that hosts the maze challenge
@@ -171,6 +172,13 @@ const MazePage = () => {
                 onShare={handleShareMaze}
               />
             </div>
+            
+            <MazeStats 
+              userData={user}
+              mazeData={{ difficulty: initialDifficulty, seed: initialSeed }}
+              isAuthenticated={isAuthenticated}
+              onRefresh={() => console.log('Refreshing stats...')}
+            />
             
             <div className={styles.mazeInfo}>
               <h2>About SecMaze Challenge</h2>
